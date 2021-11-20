@@ -9,7 +9,6 @@ const {Option} = Select;
 
 
 function App() {
-  const [name, setName] = useState('asd');
   const [rating, setRating] = useState(0);
   const [movies, setMovies] = useState([]);
   useEffect(() => {
@@ -47,7 +46,7 @@ function App() {
                   <Option value={9}>9</Option>
                   <Option value={10}>10</Option>
               </Select>
-        <BaseComponent movies={movies} name={name} age={29} />
+        <BaseComponent movies={movies}  />
           </header>
       </div>
   );
