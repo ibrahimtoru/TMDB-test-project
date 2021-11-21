@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+.filter-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  height: 100%;
+  gap: 56px;
+}
+
+.rating-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rating-box p {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 700;
+  line-height: 32px;
+  margin-bottom: 0;
+}

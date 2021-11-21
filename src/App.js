@@ -1,16 +1,19 @@
 import logo from './logo.svg';
 import BaseComponent from "./components/BaseComponent";
 import {useState, useEffect} from "react";
-import {Button, Select} from "antd";
+import {Button, Layout, Select, Menu, Input,} from "antd";
 import 'antd/dist/antd.css';
 import './App.css'
-
+const { Header, Content, Footer } = Layout;
+const { Search } = Input;
 const {Option} = Select;
 
 
 function App() {
   const [rating, setRating] = useState(0);
+  const [searchText, setSearchText] = useState('');
   const [movies, setMovies] = useState([]);
+  const [filterMovies, setFilterMovies] = useState([]);
   useEffect(() => {
       getMovies();
   }, [rating])
@@ -27,27 +30,55 @@ function App() {
               console.log(responce);
           })
   }
+  useEffect(() => {
+      const filtered = movies.filter(movie => movie.title.toLowerCase().includes(searchText.toLowerCase()));
+      setFilterMovies(filtered);
+  }, [movies, searchText])
   const handleChange = (e) => {
       setRating(e);
   }
+  const onSearch = value => setSearchText(value.trim());
   return (
       <div className="App">
-          <header className="App-header">
-              <Select value={rating} defaultValue={rating} style={{ width: 120 }} onChange={handleChange}>
-                  <Option value={0}>Select option</Option>
-                  <Option value={1}>1</Option>
-                  <Option value={2}>2</Option>
-                  <Option value={3}>3</Option>
-                  <Option value={4}>4</Option>
-                  <Option value={5}>5</Option>
-                  <Option value={6}>6</Option>
-                  <Option value={7}>7</Option>
-                  <Option value={8}>8</Option>
-                  <Option value={9}>9</Option>
-                  <Option value={10}>10</Option>
-              </Select>
-        <BaseComponent movies={movies}  />
-          </header>
+          <Layout>
+              <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+                  <div className="logo" />
+                  <div className="filter-box">
+                      <Search
+                          placeholder="search by movie name"
+                          enterButton="Search"
+                          size="large"
+                          onSearch={onSearch}
+                      />
+                      <div className="rating-box">
+                          <p>Rating: </p>
+                          <Select value={rating} defaultValue={rating} style={{ width: 160, display: "inline-block" }} onChange={handleChange}>
+                              <Option value={0}>Select Rating</Option>
+                              <Option value={10}>10</Option>
+                              <Option value={9}>9</Option>
+                              <Option value={8}>8</Option>
+                              <Option value={7}>7</Option>
+                              <Option value={6}>6</Option>
+                              <Option value={5}>5</Option>
+                              <Option value={4}>4</Option>
+                              <Option value={3}>3</Option>
+                              <Option value={2}>2</Option>
+                              <Option value={1}>1</Option>
+
+                          </Select>
+                      </div>
+
+                  </div>
+
+              </Header>
+              <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+                  <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
+                      <BaseComponent movies={filterMovies}  />
+                  </div>
+              </Content>
+
+          </Layout>
+
       </div>
   );
 }
