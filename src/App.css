@@ -1,5 +1,9 @@
+body {
+  background-color: #1f1f1f;
+}
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -58,3 +62,74 @@
   line-height: 32px;
   margin-bottom: 0;
 }
+.title-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  margin-right: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.title-container h1 {
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  font-size: 3rem;
+  line-height: 3.125rem;
+  color: #FFF;
+}
+.subtitle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .01786em;
+  line-height: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.subtitle-container > div {
+  margin-bottom: 4px;
+}
+.subtitle-container ul {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+.subtitle-container ul li {
+  margin: 0px;
+  padding: 0px;
+  border: 0px none;
+  font: inherit;
+  color: inherit;
+  list-style: none;
+}
+
+.subtitle-container ul li:not(:first-child)::before {
+  display: inline-block;
+  margin: 0 .5rem .2rem;
+  content: '';
+  font-size: 1rem;
+  line-height: .5rem;
+  padding: 1px;
+  border-radius: 50%;
+  vertical-align: middle;
+  background-color: currentColor;
+}
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
